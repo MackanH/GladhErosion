@@ -4,32 +4,44 @@ using UnityEngine;
 
 public class Erosion : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [Header("Erosion Settings")]
+    [SerializeField]
+    private int lifetime = 50;
+    [SerializeField]
+    private float erode_rate = .3f;
+    [SerializeField]
+    private float deposite_rate = .3f;
+    [SerializeField]
+    private float evaporation_rate = .01f;
+    [SerializeField]
+    private float force = 4f;
+    [Header("Droplet Settings")]
+    [SerializeField]
+    private float init_volume = 1f;
+    [SerializeField]
+    private float init_speed = 1f;
 
-    float dt = 1.2f;
-
-    float evapRate = 1e-3f;
-    float depoRate = 1e-1f;
-    float minVol = 0.01f;
-    float friction = 5e-1f;
 
 
-    public void Erode(float[] hMap)
+    public void Erode()
     {
 
     }
 }
 
-class Droplet
+public class Droplet
 {
-    Droplet(Vector2 _pos)
+    public Droplet(Vector2 _position, float _volume, float _speed)
     {
-        pos = _pos;
+        position = _position;
+        volume = _volume;
+        speed = _speed;
     }
 
-    Vector2 pos;
-    Vector2 vel;
+    public Vector2 position;
+    public Vector2 direction = new Vector2(.0f, .0f);
 
-    float volume = 1.0f;
-    float sediment = 0.0f;
+    public float volume;
+    public float speed;
+    public float sediment = 0;
 }
