@@ -618,7 +618,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1964130651
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -720,6 +720,7 @@ GameObject:
   - component: {fileID: 2008944631}
   - component: {fileID: 2008944630}
   - component: {fileID: 2008944632}
+  - component: {fileID: 2008944633}
   m_Layer: 0
   m_Name: terrain
   m_TagString: Untagged
@@ -742,7 +743,7 @@ MonoBehaviour:
   m_scale: 3
   h_scale: 3
   rot_speed: 0
-  num_iterations: 15000
+  num_iterations: 1000
   material: {fileID: 2100000, guid: 143636aab79f3684d9b56d077bf241b2, type: 2}
 --- !u!4 &2008944631
 Transform:
@@ -776,3 +777,25 @@ MonoBehaviour:
   persistancy: 0.4
   lacunarity: 2
   init_freq: 2.44
+--- !u!114 &2008944633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2008944629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57fa0b80d84b5884eadf97ea16938e33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 50
+  inertia: 0.0025
+  erode_rate: 0.3
+  deposite_rate: 0.3
+  evaporation_rate: 0.01
+  min_volume: 0.01
+  init_volume: 1
+  density: 20
+  friction: 0.05
+  init_speed: {x: 1, y: 1}

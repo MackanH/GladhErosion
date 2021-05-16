@@ -66,6 +66,8 @@ public class HeightmapGenerator : MonoBehaviour
             }
         }
 
+        Debug.Log("Max Value : " + maxV + " Min Value: " + minV);
+
         return height_map;
     }
 }

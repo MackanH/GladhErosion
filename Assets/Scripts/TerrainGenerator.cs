@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class TerrainGenerator : MonoBehaviour
 {
@@ -13,13 +15,14 @@ public class TerrainGenerator : MonoBehaviour
     private float rot_speed = 0.2f;
 
     [Header("Erosion")]
-    [SerializeField]
-    private int num_iterations = 150000;
+    public int num_iterations = 150000;
 
     private Vector3[] verts;
     private int[] triangles;
 
     public float[,] height_map;
+
+    bool animateErosion = false;
 
 
     Mesh mesh;
@@ -39,22 +42,21 @@ public class TerrainGenerator : MonoBehaviour
 
     void Update()
     {
-         GenerateTerrain();
-
         /* Rotate the object around its Y axis for fun */
         mTerrain.transform.Rotate(0, rot_speed * Time.deltaTime, 0);
     }
 
     /* Creates a new height map and adds it to the terrains Y component */
-    void GenerateTerrain()
+    public void GenerateTerrain()
     {
         height_map = FindObjectOfType<HeightmapGenerator>().Generate(m_dimension);
         GenerateMesh();
     }
 
-    void ErodeTerrain()
+    public void ErodeTerrain()
     {
-        //FindObjectOfType<Erosion>().Erode(height_map, m_dimension, num_iterations);
+        FindObjectOfType<Erosion>().Erode(height_map, m_dimension, num_iterations);
+        GenerateMesh();
     }
 
     /* Generate vertices between (-1, 1) along x- and z-axis and add the
@@ -106,8 +108,10 @@ public class TerrainGenerator : MonoBehaviour
 
         if (mesh == null)
         {
-            mesh = new Mesh();
-            mesh.name = "Terrain Mesh";
+            mesh = new Mesh
+            {
+                name = "Terrain Mesh"
+            };
         }
         else
         {

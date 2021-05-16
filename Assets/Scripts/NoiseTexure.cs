@@ -18,9 +18,6 @@ public class NoiseTexure : MonoBehaviour
 
     private void Start()
     {
-        //transform.LookAt(target);
-        //transform.Rotate(90, 0, 0);
-
         rend = GetComponent<Renderer>();
 
         noiseTex = new Texture2D(m_dimension, m_dimension);
